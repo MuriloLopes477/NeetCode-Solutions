@@ -1,0 +1,20 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        Set = sorted(list(set([int for int in nums])))
+        print(Set)
+        longest = 1
+        it = 1
+        if (len(nums) == 0):
+            return 0
+        prev = Set[0]
+        for i in range(1, len(Set)):
+            current = Set[i]
+            if (prev +1 == current):
+                it += 1
+            else:
+                it = 1
+            prev = current
+            if (it > longest):
+                longest = it
+        return longest
+        
