@@ -1,0 +1,13 @@
+#Date: 11/06/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Is Palindrome' problem in NeetCode
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        chars = [str for str in s.lower() if (ord(str) >= 97 and ord(str) <= 122) or (ord(str) >= 48 and ord(str) <= 57)]
+        print(chars)
+        for i in range(0, int(len(chars)/2)):
+            if (chars[i] != chars[len(chars)-1-i]):
+                return False
+        
+        return True
