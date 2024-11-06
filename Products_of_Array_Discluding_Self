@@ -1,0 +1,19 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        i = 0
+        j = 0
+        dict = []
+        num = 1
+        while j < pow(len(nums),2):
+            if (j % len(nums) != i):
+                num = num * nums[j % len(nums)]
+            j += 1
+            if (j % len(nums) == 0):
+                dict.append(num)
+                num = 1
+                i +=1
+        
+        return dict    
+            
+            
+        
