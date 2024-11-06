@@ -1,6 +1,6 @@
-#Date: 11/05/2024
+#Date: 11/06/2024
 #Author: Murilo Ferreira Lopes
-#Code Goal: Answer for 'Valid Sudoku' problem in NeetCode
+#Code Goal: Answer for 'Longest Consecutive Sequence' problem in NeetCode
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
