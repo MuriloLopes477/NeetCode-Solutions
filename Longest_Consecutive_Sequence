@@ -1,3 +1,7 @@
+#Date: 11/05/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Valid Sudoku' problem in NeetCode
+
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         Set = sorted(list(set([int for int in nums])))
