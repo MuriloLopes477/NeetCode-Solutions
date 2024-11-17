@@ -1,0 +1,29 @@
+#Date: 11/17/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for '3Sum' problem in NeetCode
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+            print(nums)
+            nums.sort()
+            print(nums)
+            setList = []
+            size = len(nums)
+            # iterates through each index
+            for idxL in range(0, size):
+                idxR = len(nums) - 1
+                while idxR > idxL + 1:
+                    # Tries to find an element between idxL and idxR where their sums equate to zero
+                    try:
+                        val = - nums[idxL] - nums[idxR]
+                        newList = nums[idxL+1: idxR]
+                        idxVal = newList.index(val)
+                        # adds to list if element is found
+                        if newList.__contains__(val):
+                            setList.append([nums[idxL], val, nums[idxR]])
+                    except:
+                        print('idx not found')
+                    idxR -= 1
+            # transforms list of lists into a list of tuples, then into a set of tuples, then into a list of lists
+            return list([list(y) for y in (set([tuple(x) for x in setList]))])
