@@ -1,0 +1,13 @@
+#Date: 11/21/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Container With Most Water' problem in NeetCode
+
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        maxVolume = 0
+        #Computes all possible volumes for given bars and stores the bigger volume
+        for i in range(0,len(heights)):
+            for r in range(i, len(heights)):
+                # Minimum height * distane between bars.
+                maxVolume = max(maxVolume,(min(heights[i],heights[r]) * (r-i)))
+        return maxVolume
