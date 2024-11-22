@@ -1,0 +1,46 @@
+#Date: 11/22/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Max Area of Island' problem in NeetCode
+
+from typing import List
+import math
+import numpy as np
+
+
+def recursion(x, y):
+    global visited
+    global count
+
+    #If land is found, count it and update land to water in order to prevent double counting
+    if visited[y][x] == 1:
+        count += 1
+        visited[y][x] = 0
+    else:
+        return 0
+
+    #check neighboring blocks
+    recursion(min(len(visited[0]) - 1, max(0, x + 1)), y)
+    recursion(x, min(len(visited) - 1, max(0, y + 1)))
+    recursion(min(len(visited[0]) - 1, max(0, x - 1)), y)
+    recursion(x, min(len(visited) - 1, max(0, y - 1)))
+    return 0
+
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        global visited
+        global count
+        visited = grid
+
+        maxArea = 0
+
+        #For each block in the grid, check if its land through the recursion function. if it is, check the surrounding blocks for land. Counts the total amount of area checked per island
+        for y in range(0, len(visited)):
+            for x in range(0, len(visited[0])):
+                count = 0
+                recursion(x, y)
+                maxArea = max(maxArea, count)
+        return maxArea
+
+visited = [[]]
+count = 0
