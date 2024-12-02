@@ -1,0 +1,27 @@
+#Date: 12/2/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Number of Islands' problem in NeetCode
+
+
+def recursion(grid,x,y) -> bool:
+    #If element is land('1'), then convert it to water to prevent duplicate counting.
+    if grid[y][x] == '1':
+       grid[y][x] = 0
+       #Check for neighbooring lands to turn them into water to prevent double counting of the island
+       recursion(grid,min(x+1,len(grid[0])-1),y)
+       recursion(grid,max(x-1,0),y)
+       recursion(grid,x,min(y+1,len(grid)-1))
+       recursion(grid,x,max(y-1,0))
+       #If 1st checked element was land, return true
+       return True
+    return False
+
+class Solution:        
+    def numIslands(self, grid: List[List[str]]) -> int:
+        count = 0
+        #Call recursion function for each index in the grid
+        for y in range(0,len(grid)):
+            for x in range(0, len(grid[0])):
+                if recursion(grid,x,y) == True:
+                    count += 1
+        return count
