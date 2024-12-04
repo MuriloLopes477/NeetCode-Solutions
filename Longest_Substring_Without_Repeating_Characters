@@ -1,0 +1,28 @@
+#Date: 12/2/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Longest Substring Without Repeating Characters' problem in NeetCode
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        #Define variables
+        setOfChars = {'':2000}
+        maxVal = 0
+        count = 0
+        idx = 0
+        #Count characters until finds a repeact of one of the counted characters, then compares to maxVal and updates it. Begins comparing again from the element next to the first instance of the duplicated value
+        while idx < (len(s)):
+            c = s[idx]
+            print(idx)
+            if c in setOfChars:
+                maxVal = max(maxVal, count)
+                idx = setOfChars[c] + 1
+                nextChar = s[min(idx,len(s)-1)]
+                setOfChars = {'':2000}
+                setOfChars[nextChar] = idx
+                count = 0
+            else:
+                setOfChars[c] = idx
+            count += 1
+            idx += 1
+        maxVal = max(maxVal, count)
+        return maxVal
