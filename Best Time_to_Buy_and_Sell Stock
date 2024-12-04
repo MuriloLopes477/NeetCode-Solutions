@@ -1,0 +1,11 @@
+#Date: 12/2/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Best Time to Buy and Sell Stock' problem in NeetCode
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        maxVal = 0
+        for l in range(0, len(prices)-1):
+            for r in range(l,len(prices)):
+                maxVal = max(prices[r] - prices[l], maxVal)
+        return maxVal
