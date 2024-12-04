@@ -1,0 +1,28 @@
+#Date: 12/4/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Same Binary Tree' problem in NeetCode
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def recursion(p,q) -> bool:
+    if (p == None and q != None) or (p != None and q == None):
+        return False
+
+    if p != None and q != None:
+        if p.val == q.val:
+            if recursion(p.left, q.left) ==  False:
+                return False
+            elif recursion(p.right, q.right) ==  False:
+                return False
+            return True
+        return False
+    return True
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        return recursion(p,q)
+        
