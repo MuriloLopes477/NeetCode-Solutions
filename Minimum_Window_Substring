@@ -1,0 +1,37 @@
+#Date: 12/31/2024
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Minimum Window Substring' problem in NeetCode
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #Check cases
+        if s == t:
+            return s
+        newS = str(s)
+        for e in t:
+            if not newS.__contains__(e):
+                return ""
+            else:
+                newS = newS.replace(e," ",1)
+
+        #Check each window (substring from l to r) and check for all characters in t, if found, diminish window (l +=1), if not found, increase window (r+=1)
+        l = 0
+        r = 1
+        ans = s
+        ansLen = len(s)
+        while l < r and r <= len(s):
+            sub = s[l:r]
+            check = True
+            for e in t:
+                if not sub.__contains__(e):
+                    r += 1
+                    check = False
+                    break
+                else:
+                    sub = sub.replace(e," ",1)
+            if check:
+                if ansLen > len(sub):
+                    ans = s[l:r]
+                    ansLen = len(sub)
+                l += 1
+        return ans
