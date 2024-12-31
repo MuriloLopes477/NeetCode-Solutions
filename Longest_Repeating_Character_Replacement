@@ -1,0 +1,34 @@
+#Date: 12/2/2024
+#Author: Murilo Ferreira Lopes -> Answer assisted by Neetcode Solution video
+#Code Goal: Answer for 'Longest Repeating Character Replacement' problem in NeetCode
+
+
+from operator import countOf
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        #Dictionary to map out character occurances in substrings
+        letter_map = {'.':0}
+        letter_map.clear()
+        l = 0
+        r = 1
+        maxF = 0
+        ans = 0
+        while l < r and r <= len(s):
+            sub = s[l:r]
+
+            #Get every unique letter in substring
+            subset = set([i for i in sub])
+            #Check for the most occurring letter
+            for e in subset:
+                maxF = max(maxF,countOf(sub,e))
+            #Check for valid window (Every character is the same after k replacements),shift window accordingly
+            if ((r-l) - maxF) <= k:
+                ans = r-l
+                r += 1
+            else:
+                l += 1
+        return ans
+
+# Noticiably, maxF is not reseted when changing the scoped window. While this might seem counter intuitive, this does not impact our 
+# solution as we only care for the length of the longest possible repeating substring. Thus we only check substrings of the size of our highest sized ans or larger.
