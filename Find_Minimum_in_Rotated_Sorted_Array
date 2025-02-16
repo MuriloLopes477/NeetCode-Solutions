@@ -1,0 +1,26 @@
+//Date: 02/15/2025
+//Author: Murilo Ferreira Lopes
+//Code Goal: Answer for 'Find Minimum in Rotated Sorted Array' problem in NeetCode
+
+class Solution {
+    public static int findMin(int[] nums) {
+
+        //Indexes for binary search
+        int l = 0;
+        int r = nums.length -1;
+        int m = (r+l) /2;
+        while (l < r) {
+            //if left > right, there is an ordered sublist between left and right inclusively
+            if (nums[l] > nums[m]) {
+                r = m;
+            //Minimum must be to the right of the middle of the list
+            } else if (nums[r] < nums[m]) { 
+                l = m+1;
+            } else {
+                return nums[l];
+            }
+            m = (r + l) / 2;
+        }
+        return nums[m];
+    }
+}
