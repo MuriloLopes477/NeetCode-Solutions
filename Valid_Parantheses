@@ -1,0 +1,26 @@
+#Date: 2/15/2025
+#Author: Murilo Ferreira Lopes
+#Code Goal: Answer for 'Valid Parantheses' problem in NeetCode
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        #This represents stack where we'll keep track of parantheses ordering
+        data = []
+        #iterate through each character in string and add its negation to stack or return false if parantheses don't match, return true in the end of function otherwise
+        for c in s:
+            print(c)
+            if c == '(':
+                data.append(')')
+            elif c == '[':
+                data.append(']')
+            elif c == '{':
+                data.append('}')
+            elif len(data) == 0 or data[-1] is not c:
+                return False
+            else:
+                data.remove(data[-1])
+        #Check to see if all parantheses partners have been removed from stack
+        if len(data) > 0:
+            return False
+        return True
+
