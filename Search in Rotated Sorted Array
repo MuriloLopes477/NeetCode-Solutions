@@ -1,0 +1,27 @@
+//Date: 02/18/2025
+//Author: Murilo Ferreira Lopes
+//Code Goal: Answer for 'Search in Rotated Sorted Array' problem in NeetCode
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+
+        #binary search
+        l = 0
+        r = len(nums)-1
+        m = int((l + r) / 2)
+        #Since the array was originally ordered and simply shifted by n amount, at every moment, at least one half is sorted. Thus, we perform binary search in the ordered half of the nums list.
+        while (l < r and nums[m] != target):
+            if (nums[l] <= nums[m]):
+                if (target >= nums[l] and target <= nums[m]):
+                    r = m -1
+                else:
+                    l = m + 1
+            else:
+                if (target <= nums[r] and target >= nums[m]):
+                    l = m + 1
+                else:
+                    r = m - 1
+            m = int((r+l) /2)
+        if nums[m] == target:
+            return m
+        return -1
